@@ -66,7 +66,7 @@ return Column(children: [
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        // ✅ Título Centrado: Se envuelve el Row en Center y se usa mainAxisSize.min
+       
         title: Center( 
           child: Row(
             mainAxisSize: MainAxisSize.min,
