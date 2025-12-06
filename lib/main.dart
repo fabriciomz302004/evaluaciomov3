@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 void main(){
 runApp(MiApp());
 
+
 }
 class MiApp extends StatelessWidget {
   const MiApp({super.key});
@@ -31,8 +32,10 @@ class Cuerpo extends StatelessWidget {
     );
   }
 }
+
  Widget botones(context){
 return Column(children: [
+  
   
    FilledButton(onPressed: ()=>irventana1(context), child: Text("desplegar informacion")),
    
@@ -55,12 +58,47 @@ return Column(children: [
  }
 
  void irventana1(context){
-  //push poner documento sobre otro y pop quitarlo
-
-  Navigator.push(context, MaterialPageRoute(builder: (context)=>Pantalla1(),));//constructor permite conectar a la otra ventana 
-  
-
+  mostrarInfoModal(context);
  }
+
+ void mostrarInfoModal(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        // ✅ Título Centrado: Se envuelve el Row en Center y se usa mainAxisSize.min
+        title: Center( 
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Icon(Icons.person, color: Colors.blue),
+              SizedBox(width: 8),
+              Text('Información del Estudiante'),
+            ],
+          ),
+        ),
+        content: const Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Nombre:Leandro Moreirs', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text('Docente:Ing.Julio Rosero'),
+            Text('Carrera:Desarrollo de Software'),
+            Text('Fecha: 06/12/2025'),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cerrar'),
+          ),
+        ],
+      );
+    },
+  );
+}
 
  void irVentana2(context){
  Navigator.push(context, MaterialPageRoute(builder: (context)=> Pantalla2(),));
